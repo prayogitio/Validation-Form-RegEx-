@@ -1,7 +1,7 @@
 const inputs = document.querySelectorAll('input');
 
 const patterns = {
-    username: /^[a-z0-9A-Z]{8,10}$/,
+    username: /^[a-z0-9A-Z]{8,15}$/,
     email: /^([a-z\d.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/,
     password: /^[\w]{8,20}$/,
     phone: /^\+62[\d]{11,13}$/
@@ -22,6 +22,16 @@ inputs.forEach((input) => {
         } else {
             console.log(document.getElementById(e.target.attributes.name.value).className);
             document.getElementById(e.target.attributes.name.value).className = "form-group has-warning";
+        }
+    });
+});
+
+inputs.forEach((input) => {
+    input.addEventListener('keyup', (e) => {
+        if (document.getElementById(e.target.attributes.name.value).className !== 'form-group has-success') {
+            document.getElementById('btnLogin').className = 'btn btn-danger';
+        } else {
+            document.getElementById('btnLogin').className = 'btn btn-danger disabled';
         }
     });
 });
